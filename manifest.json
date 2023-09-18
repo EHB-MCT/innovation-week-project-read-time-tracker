@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Read time tracker",
+  "description": "Extension that estimates how long it will take on average to read a webpage.",
+  "version": "1.0",
+  "action": {
+    "default_popup": "readtimetracker.html",
+    "default_icon": ""
+  }
+}
