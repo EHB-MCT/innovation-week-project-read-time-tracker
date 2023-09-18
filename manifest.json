@@ -15,9 +15,8 @@
       "js":["scripts/timer.js"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+    "service_worker": "scripts/background.js"
+  }
 }

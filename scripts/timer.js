@@ -18,12 +18,20 @@ var timerText;
 //create a variable to store the timer interval
 var timerInterval;
 
-// Add an event listener for the DOMContentLoaded event
-document.addEventListener("DOMContentLoaded", function() {
-    addTimer();
-    // Call the startTimer function to start the timer
-    startTimer();
-});
+// Listen for messages from the background script
+// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+//     if (request.startTimer) {
+//       startTimer();
+//     }
+//   });
+  
+//   // Listen for the "DOMContentLoaded" event to ensure the content script is ready
+//   document.addEventListener('DOMContentLoaded', function () {
+//     // Notify the background script that the content script is ready
+//     chrome.runtime.sendMessage({ contentScriptReady: true });
+//   });
+addTimer();
+startTimer();
 
 function startTimer() {
     //get the timer div
