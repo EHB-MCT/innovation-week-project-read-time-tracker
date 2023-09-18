@@ -4,6 +4,19 @@
   "description": "Extension that estimates how long it will take on average to read a webpage.",
   "version": "1.0",
   "action": {
-    "default_popup": "readtimetracker.html"
-  }
+    "default_popup": "html/readtimetracker.html",
+    "default_icon": "images/timer_extension.png"
+  },
+  "icons": {
+    "128": "images/timer_extension.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/timer.js"],
+      "matches": [
+        "https://developer.chrome.com/docs/extensions/*",
+        "https://developer.chrome.com/docs/webstore/*"
+      ]
+    }
+  ]
 }
