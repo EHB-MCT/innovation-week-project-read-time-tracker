@@ -9,14 +9,5 @@
   },
   "icons": {
     "128": "images/timer_extension.png"
-  },
-  "content_scripts": [
-    {
-      "js": ["scripts/timer.js"],
-      "matches": [
-        "https://developer.chrome.com/docs/extensions/*",
-        "https://developer.chrome.com/docs/webstore/*"
-      ]
-    }
-  ]
+  }
 }

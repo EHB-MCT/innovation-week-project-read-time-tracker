@@ -7,14 +7,10 @@
 //the timer is displayed in a div with the id of timer
 //start coding
 
-//create a variable to store the timer
-var timer;
-//create a variable to store the time
-var time;
 //create a variable to store the minutes
-var minutes;
+var minutes = 0;
 //create a variable to store the seconds
-var seconds;
+var seconds = 0;
 //create a variable to store the timer div
 var timerDiv;
 //create a variable to store the timer text
@@ -22,23 +18,20 @@ var timerText;
 //create a variable to store the timer interval
 var timerInterval;
 
+addTimer();
+startTimer();
 
-//create a function to start the timer
 function startTimer() {
     //get the timer div
     timerDiv = document.getElementById("timer");
     //get the timer text
     timerText = document.getElementById("timerText");
-    //get the time
-    time = 0;
     //get the minutes
     minutes = 0;
     //get the seconds
     seconds = 0;
     //set the timer interval
     timerInterval = setInterval(function() {
-        //increment the time
-        time++;
         //increment the seconds
         seconds++;
         //if the seconds are greater than or equal to 60
@@ -58,14 +51,6 @@ function startTimer() {
     }, 1000);
 }
 
-//create a function to stop the timer
-function stopTimer() {
-    //clear the timer interval
-    clearInterval(timerInterval);
-    //send the timer to the server
-    sendTimer();
-}
-
 //add the timer to the DOM
 function addTimer() {
     //get the timer div
@@ -74,6 +59,4 @@ function addTimer() {
     timerText = document.getElementById("timerText");
     //set the timer text to the minutes:seconds
     timerText.innerHTML = minutes + ":" + seconds;
-    //add the timer to the DOM
-    timerDiv.appendChild(timerText);
 }
