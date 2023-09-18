@@ -9,5 +9,15 @@
   },
   "icons": {
     "128": "images/timer_extension.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "js":["scripts/timer.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
 }

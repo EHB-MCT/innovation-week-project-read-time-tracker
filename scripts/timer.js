@@ -18,8 +18,12 @@ var timerText;
 //create a variable to store the timer interval
 var timerInterval;
 
-addTimer();
-startTimer();
+// Add an event listener for the DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", function() {
+    addTimer();
+    // Call the startTimer function to start the timer
+    startTimer();
+});
 
 function startTimer() {
     //get the timer div
