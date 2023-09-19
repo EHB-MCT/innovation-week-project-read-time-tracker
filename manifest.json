@@ -28,5 +28,11 @@
   },
   "icons": {
     "128": "images/timer_extension.png"
-  }
+  },
+  "web_accesible_resources": [{
+    "resources": [
+      "images/timer_extension.png"
+    ],
+    "matches":["<all_urls>"]
+  }]
 }
