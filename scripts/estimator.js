@@ -46,7 +46,11 @@ const fetchUrl = (url, index) => {
       const wpm = 200;
       const readingTime = Math.ceil(words.length / wpm);
 
-      // Create a new element to display reading time
+      const imgUrl = chrome.runtime.getURL('images/timer_extension.png');
+      const divWrapper = document.createElement("div");
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      //Create a new element to display reading time
       const readingTimeElement = document.createElement("span");
       readingTimeElement.style.display = "block";
       readingTimeElement.style.marginTop = "10px";
@@ -57,7 +61,9 @@ const fetchUrl = (url, index) => {
 
       // Append reading time element to each result
       const resultWrapper = document.querySelectorAll(".g")[index];
-      resultWrapper.appendChild(readingTimeElement);
+      resultWrapper.appendChild(divWrapper);
+      divWrapper.appendChild(img);
+      divWrapper.appendChild(readingTimeElement);
     }
   );
 };
