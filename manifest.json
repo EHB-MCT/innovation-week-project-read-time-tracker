@@ -5,7 +5,8 @@
   "version": "1.0",
   "action": {
     "default_popup": "html/readtimetracker.html",
-    "default_icon": "images/timer_extension.png"
+    "default_icon": "images/timer_extension.png",
+    "default_title": "Read time tracker"
   },
   "icons": {
     "128": "images/timer_extension.png"
@@ -18,5 +19,7 @@
   ],
   "background": {
     "service_worker": "scripts/background.js"
-  }
+  },
+  "permissions": ["scripting"],
+  "host_permissions": ["<all_urls>"]
 }

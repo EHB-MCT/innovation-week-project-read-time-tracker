@@ -5,37 +5,31 @@
 //the timer is displayed in the format of minutes:seconds
 //the timer is displayed in the top right corner of the page
 //the timer is displayed in a div with the id of timer
-//start coding
 
-//create a variable to store the minutes
 var minutes = 0;
-//create a variable to store the seconds
 var seconds = 0;
-//create a variable to store the timer div
 var timerDiv;
-//create a variable to store the timer text
 var timerText;
-//create a variable to store the timer interval
 var timerInterval;
+
+chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    if (tabs.length > 0) {
+      console.log(`This is tab ${tabs[0].id}`);
+      // Call the startTimer function when the message is received
+    }
+});
+startTimer();
 
 // Listen for messages from the background script
 // chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 //     if (request.startTimer) {
 //       startTimer();
+//       console.log(`Timer started at ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`)
 //     }
 //   });
-  
-//   // Listen for the "DOMContentLoaded" event to ensure the content script is ready
-//   document.addEventListener('DOMContentLoaded', function () {
-//     // Notify the background script that the content script is ready
-//     chrome.runtime.sendMessage({ contentScriptReady: true });
-//   });
-addTimer();
-startTimer();
 
 function startTimer() {
-    //get the timer div
-    timerDiv = document.getElementById("timer");
+    addTimer();
     //get the timer text
     timerText = document.getElementById("timerText");
     //get the minutes
@@ -65,8 +59,6 @@ function startTimer() {
 
 //add the timer to the DOM
 function addTimer() {
-    //get the timer div
-    timerDiv = document.getElementById("timer");
     //get the timer text
     timerText = document.getElementById("timerText");
     //set the timer text to the minutes:seconds
