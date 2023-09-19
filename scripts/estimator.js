@@ -4,7 +4,9 @@ window.onload = () => {
   console.log("Fetching all search result urls");
   const urls = getSearchResultUrls();
 
-  fetchUrl(urls[0], 0);
+  urls.forEach((url, index) => {
+    fetchUrl(url, index);
+  });
 };
 
 const getSearchResultUrls = () => {
@@ -31,9 +33,6 @@ const fetchUrl = (url, index) => {
         response.message,
         "text/html"
       );
-
-      console.log("HTML document:", htmlDocument.body);
-
       const tempElement = document.createElement("div");
       tempElement.innerHTML = htmlDocument.body.innerHTML;
 
@@ -42,8 +41,6 @@ const fetchUrl = (url, index) => {
 
       // Split text into words
       const words = text.split(/\s+/);
-
-      console.log(words);
 
       // Calculate reading time in minutes
       const wpm = 200;
@@ -61,8 +58,6 @@ const fetchUrl = (url, index) => {
       // Append reading time element to each result
       const resultWrapper = document.querySelectorAll(".g")[index];
       resultWrapper.appendChild(readingTimeElement);
-
-      console.log("Reading time:", readingTime, "minutes");
     }
   );
 };

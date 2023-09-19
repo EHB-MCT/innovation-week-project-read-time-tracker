@@ -1,7 +1,8 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "extractContent") {
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/"; // proxy url to bypass cors restriction
     // Extract content from URL
-    fetch(message.url)
+    fetch(proxyUrl + message.url)
       .then((response) => response.text())
       .then((html) => {
         sendResponse({ message: html });
