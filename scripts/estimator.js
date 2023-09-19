@@ -36,28 +36,53 @@ const fetchUrl = (url, index) => {
       const tempElement = document.createElement("div");
       tempElement.innerHTML = htmlDocument.body.innerHTML;
 
+      // Find all words in readable text tags
+      const readableTextTags = ["p", "h1", "h2", "h3", "h4", "h5", "h6"];
+      const readableText = tempElement.querySelectorAll(readableTextTags);
+
+      // Get all text content from readable text tags
+      let textContent = "";
+      readableText.forEach((element) => {
+        console.log("Element", element);
+        textContent += element.textContent;
+      });
+
       // Remove HTML tags to get plain text
       const text = tempElement.textContent.replace(/<[^>]+>/g, "");
 
       // Split text into words
-      const words = text.split(/\s+/);
+      const words = textContent.split(/\s+/);
 
       // Calculate reading time in minutes
       const wpm = 200;
       const readingTime = Math.ceil(words.length / wpm);
 
+      // Wrapper
+      const divWrapper = document.createElement("div");
+      divWrapper.style.display = "flex";
+      divWrapper.style.alignItems = "center";
+      divWrapper.style.marginTop = "10px";
+      divWrapper.style.gap = "5px";
+
+      // Icon
+      const icon = document.createElement("div");
+      icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#16d05d}</style><path d="M176 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h16V98.4C92.3 113.8 16 200 16 304c0 114.9 93.1 208 208 208s208-93.1 208-208c0-41.8-12.3-80.7-33.5-113.2l24.1-24.1c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L355.7 143c-28.1-23-62.2-38.8-99.7-44.6V64h16c17.7 0 32-14.3 32-32s-14.3-32-32-32H224 176zm72 192V320c0 13.3-10.7 24-24 24s-24-10.7-24-24V192c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>`;
+      icon.style.display = "flex";
+      icon.style.alignItems = "center";
+
       // Create a new element to display reading time
       const readingTimeElement = document.createElement("span");
       readingTimeElement.style.display = "block";
-      readingTimeElement.style.marginTop = "10px";
       readingTimeElement.style.fontSize = "12px";
       readingTimeElement.id = `reading_time_${index}`;
       readingTimeElement.textContent = `${readingTime} min read`;
-      readingTimeElement.style.color = "#5f6368";
+      readingTimeElement.style.color = "rgb(22,208,93)";
 
       // Append reading time element to each result
       const resultWrapper = document.querySelectorAll(".g")[index];
-      resultWrapper.appendChild(readingTimeElement);
+      resultWrapper.appendChild(divWrapper);
+      divWrapper.appendChild(icon);
+      divWrapper.appendChild(readingTimeElement);
     }
   );
 };
