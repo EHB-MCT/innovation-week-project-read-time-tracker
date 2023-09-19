@@ -3,7 +3,7 @@
   "name": "Read time tracker",
   "description": "Extension that estimates how long it will take on average to read a webpage.",
   "version": "1.0",
-  "permissions": ["activeTab", "webNavigation"],
+  "permissions": ["activeTab", "webNavigation", "scripting"],
   "host_permissions": ["https://www.google.com/*"],
   "background": {
     "service_worker": "./scripts/background.js"
@@ -18,7 +18,15 @@
         "https://www.google.com/search*",
         "https://www.google.com/search?q=*"
       ],
-      "js": ["./scripts/estimator.js"]
+      "js": ["./scripts/estimator.js", "scripts/timer.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "html/readtimetracker.html",
+    "default_icon": "images/timer_extension.png",
+    "default_title": "Read time tracker"
+  },
+  "icons": {
+    "128": "images/timer_extension.png"
+  }
 }
