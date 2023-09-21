@@ -10,11 +10,13 @@
     <!-- Create a form where a user can select if he is a fast reader, medium reader or slow reader -->
     <form id="options-form">
         <label for="readTime">Select your reading speed:</label>
-        <select name="readTime" id="readTime">
-            <option value="fast">Fast</option>
-            <option selected="selected" value="medium">Medium</option>
-            <option value="slow">Slow</option>
+        <select name="readTime" id="readTimeSelect">
+            <option value="300">Fast</option>
+            <option selected="selected" value="200">Medium</option>
+            <option value="50">Slow</option>
         </select>
         <input type="submit" value="Save">
+    </form>
+    <span id="status"></span>
 </body>
 </html>

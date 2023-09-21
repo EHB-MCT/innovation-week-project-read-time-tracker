@@ -1,30 +1,34 @@
-const syncOptions = () => {
-    chrome.storage.sync.get({
-        option:null,
-    },(items) => {
-        document.getElementById('option_key').value = items.option;
-    });
+function PageLoaded(){
+    syncOptions();
+
+    //Update options on form save
+    document.getElementById('options-form').addEventListener('submit'
+    , saveOptions);
 }
 
-//load any options already saved
-document.addEventListener('DOMContentLoaded', syncOptions);
+const syncOptions = () => {
+    chrome.storage.sync.get({
+        option:200,
+    },(items) => {
+        document.getElementById('readTimeSelect').value = items.option;
+    });
+}
 
 //save options
 const saveOptions = (e) => {
     e.preventDefault();
-    const optionValue = document.getElementById('option_key').value;
+    const optionValue = document.getElementById('readTimeSelect').value;
     
     chrome.storage.sync.set({
         option: optionValue,
     }, () => {
         const status = document.getElementById('status');
-        status.textContent = 'your changes have been saved';
+        status.innerHTML += 'your changes have been saved';
         setTimeout(() => {
-            status.textContent = '';
+            status.innerHTML = '';
         }, 750);
     });
 }
 
-//Update options on form save
-document.getElementById('options-form').addEventListener('submit'
-, saveOptions);
+//load any options already saved
+document.addEventListener('DOMContentLoaded', PageLoaded);

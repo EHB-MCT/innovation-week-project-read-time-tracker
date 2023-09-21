@@ -54,8 +54,24 @@ const fetchUrl = (url, index) => {
       const words = textContent.split(/\s+/);
 
       // Calculate reading time in minutes
-      const wpm = 200;
+      let wpm = 200;
       const readingTime = Math.ceil(words.length / wpm);
+
+      // Function to request the reading speed value from the background script
+      const getWPMFromStorage = () => {
+        console.log("Getting reading speed value from storage");
+        chrome.storage.sync.get({
+          option: 200, // Default value for Medium
+        }, (items) => {
+          wpm = parseInt(items.option); // Parse the value to an integer
+          console.log(`current wpm: ${wpm}`);
+        });
+      };
+
+      // Call the function to get the reading speed value
+      //document.addEventListener("DOMContentLoaded", getWPMFromStorage); //Never gets called for some reason
+      getWPMFromStorage(); //gets called multiple times for some reason
+
 
       // Wrapper
       const divWrapper = document.createElement("div");
