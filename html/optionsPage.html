@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReadTimer Options</title>
+    <script src="../scripts/options.js"></script>
 </head>
 <body>
-    <h1>Hi</h1>
+    <!-- Create a form where a user can select if he is a fast reader, medium reader or slow reader -->
+    <form id="options-form">
+        <label for="readTime">Select your reading speed:</label>
+        <select name="readTime" id="readTime">
+            <option value="fast">Fast</option>
+            <option selected="selected" value="medium">Medium</option>
+            <option value="slow">Slow</option>
+        </select>
+        <input type="submit" value="Save">
 </body>
 </html>
