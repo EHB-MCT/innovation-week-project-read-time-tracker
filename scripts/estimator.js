@@ -1,13 +1,40 @@
+  // Calculate reading time in minutes
+  let wpm = 200;
+
+  
+  let color = "16d05d";
+
 window.onload = () => {
   console.log("Estimator loaded");
 
   console.log("Fetching all search result urls");
   const urls = getSearchResultUrls();
 
+  manageStorage();
+
   urls.forEach((url, index) => {
     fetchUrl(url, index);
   });
 };
+
+function manageStorage() {  
+  // Function to request the reading speed value from the background script
+  const getFromStorage = () => {
+    console.log("Getting reading speed value from storage");
+    chrome.storage.sync.get({
+      option: 200, // Default value for Medium
+      color: "16d05d", // Default green
+    }, (items) => {
+      wpm = parseInt(items.option); // Parse the value to an integer
+      color = items.color; // Get the color value
+      console.log(`current wpm: ${wpm}`);
+      console.log(`current color: ${color}`);
+    });
+    };
+  
+  //document.addEventListener("DOMContentLoaded", getWPMFromStorage); //Never gets called for some reason
+  getFromStorage(); //gets called multiple times for some reason
+}
 
 const getSearchResultUrls = () => {
   // Use querySelector to find 'span' inside class .g
@@ -53,24 +80,7 @@ const fetchUrl = (url, index) => {
       // Split text into words
       const words = textContent.split(/\s+/);
 
-      // Calculate reading time in minutes
-      let wpm = 200;
       const readingTime = Math.ceil(words.length / wpm);
-
-      // Function to request the reading speed value from the background script
-      const getWPMFromStorage = () => {
-        console.log("Getting reading speed value from storage");
-        chrome.storage.sync.get({
-          option: 200, // Default value for Medium
-        }, (items) => {
-          wpm = parseInt(items.option); // Parse the value to an integer
-          console.log(`current wpm: ${wpm}`);
-        });
-      };
-
-      // Call the function to get the reading speed value
-      //document.addEventListener("DOMContentLoaded", getWPMFromStorage); //Never gets called for some reason
-      getWPMFromStorage(); //gets called multiple times for some reason
 
 
       // Wrapper
@@ -82,7 +92,9 @@ const fetchUrl = (url, index) => {
 
       // Icon
       const icon = document.createElement("div");
-      icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#16d05d}</style><path d="M176 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h16V98.4C92.3 113.8 16 200 16 304c0 114.9 93.1 208 208 208s208-93.1 208-208c0-41.8-12.3-80.7-33.5-113.2l24.1-24.1c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L355.7 143c-28.1-23-62.2-38.8-99.7-44.6V64h16c17.7 0 32-14.3 32-32s-14.3-32-32-32H224 176zm72 192V320c0 13.3-10.7 24-24 24s-24-10.7-24-24V192c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>`;
+      icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License 
+      - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, 
+      Inc. --><style>svg{fill:#${color}}</style><path d="M176 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h16V98.4C92.3 113.8 16 200 16 304c0 114.9 93.1 208 208 208s208-93.1 208-208c0-41.8-12.3-80.7-33.5-113.2l24.1-24.1c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L355.7 143c-28.1-23-62.2-38.8-99.7-44.6V64h16c17.7 0 32-14.3 32-32s-14.3-32-32-32H224 176zm72 192V320c0 13.3-10.7 24-24 24s-24-10.7-24-24V192c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>`;
       icon.style.display = "flex";
       icon.style.alignItems = "center";
 
