@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReadTimer Options</title>
-    <script src="../scripts/options.js"></script>
-</head>
-<body>
-    <!-- Create a form where a user can select if he is a fast reader, medium reader or slow reader -->
-    <form id="options-form">
-        <label for="readTime">Select your reading speed:</label>
-        <select name="readTime" id="readTimeSelect">
-            <option value="300">Fast</option>
-            <option selected="selected" value="200">Medium</option>
-            <option value="50">Slow</option>
-        </select>
-        <input type="submit" value="Save">
-    </form>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ReadTimer Options</title>
+        <script src="../scripts/options.js"></script>
+        <!-- Include Tailwind CSS via CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    </head>
+    <body class="bg-gradient-to-r from-blue-500 to-green-500 text-white p-8 flex justify-center align-center h-screen">
+        <!-- Create a form where a user can select reading speed -->
+        <div class="flex flex-col justify-center align-center w-1/2">
+            <div class="bg-white rounded-lg shadow-lg text-black p-8">
+                <h1 class="text-3xl font-semibold mb-4 text-gray-800 pb-4 text-center border-b-2 mx-auto">Reading Time Tracker Options</h1>
+                <form id="options-form" class="flex flex-col gap-8">
+                    <div class="flex flex-row gap-4 justify-between">
+                        <label for="readTime" class="text-lg font-bold text-gray-800 mb-2 block">Reading Speed: </label>
+                        <select name="readTime" id="readTimeSelect" class="p-2 border rounded-md focus:ring focus:ring-blue-500 w-32 text-center">
+                            <option value="300">Fast</option>
+                            <option selected="selected" value="200">Medium</option>
+                            <option value="50">Slow</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-row gap-4 justify-between">
+                        <label for="color" class="text-lg font-bold text-gray-800 mb-2 block">Select Color:</label>
+                        <select name="color" id="colorSelect" class="p-2 border rounded-md focus:ring focus:ring-blue-500 w-32 text-center">
+                            <option selected="selected" value="16d05d">Green</option>
+                            <option value="0000FF">Blue</option>
+                            <option value="FFFF00">Yellow</option>
+                            <option value="000000">Black</option>
+                            <option value="FF0000">Red</option>
+                            <option value="808080">Grey</option>
+                        </select>
+                    </div>
+                    <button
+                        type="submit"
+                        class="mt-auto px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-md transition duration-300 self-end w-32 text-center"
+                    >
+                        Save
+                    </button>
+                </form>
+                <br />
 
-    <br>
-
-    <label for="color">Select your color:</label>
-    <select name="color" id="colorSelect">
-        <option selected="selected" value="16d05d">Green</option>
-        <option value="0000FF">Blue</option>
-        <option value="FFFF00">Yellow</option>
-        <option value="000000">Black</option>
-        <option value="FF0000">Red</option>
-        <option value="808080">Grey</option>
-    </select>
-
-    <br>
-    
-    <span id="status"></span>
-</body>
+                <span id="status" class="text-lg text-black mt-4"></span>
+            </div>
+        </div>
+    </body>
 </html>
